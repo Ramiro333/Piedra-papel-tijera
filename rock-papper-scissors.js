@@ -5,7 +5,7 @@ function getComputerChoice() {
     const valorSeleccionado = valores[getRandom];
     return valorSeleccionado
 }
-//establecer si gana o pierde y guardar valores
+//crear funcion de aprtida, guardar values
 //print que gano la ronda
 function game(userChoice, ComputerChoice) { 
     if (userChoice === ComputerChoice) {
@@ -44,24 +44,41 @@ function game(userChoice, ComputerChoice) {
 //usar eleccion de la maquina
 //hacer que el usuario elija
 //hacer que sean 5 rounds
-//setear valores win/lose
+//setear valores win/lose/partida
 let win = 0;
 let lose = 0;
-for (let playRound = 0; playRound < 5; playRound++) {
-        let ComputerChoice = getComputerChoice()
-        let getChoise = prompt("que eljies?");
-        let userChoice = getChoise.toLowerCase();
-        game(userChoice, ComputerChoice);
-} 
+let partida = 0;
+//game(userChoice, ComputerChoice);
+
 //decir quien gano
 if (win > lose) {
     console.log("Ganaste la partida !");
-}
-if (win < lose) {
+} else if (win < lose) {
     console.log("perdiste la partida :(")
-}
-if (win === lose)
-    console.log("empate :0")
-console.log("you = " + win);
-console.log("computer = " + lose)
+}else (console.log("empate :0"))
 
+//for (let playRound = 0; playRound < 5; playRound++) {
+//asignar botones a las elecciones
+
+const tijera = document.getElementById('tijera');
+const papel = document.getElementById('papel');
+const piedra = document.getElementById('piedra');
+
+function elegir(choice) {
+    let userChoice = choice
+    let ComputerChoice = getComputerChoice()
+    game(userChoice, ComputerChoice);
+    console.log("you = " + win);
+    console.log("computer = " + lose)
+    partida++ 
+}
+
+tijera.onclick = function() {
+    elegir("tijera")
+}
+papel.onclick = function() {
+    elegir("papel")
+}
+piedra.onclick = function() {
+    elegir("piedra")
+}
