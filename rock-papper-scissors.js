@@ -5,73 +5,88 @@ function getComputerChoice() {
     const valorSeleccionado = valores[getRandom];
     return valorSeleccionado
 }
-//crear funcion de aprtida, guardar values
+//crear funcion de partida, guardar values
 //print que gano la ronda
+//agregar p al html
+const resultados = document.getElementById('results');
+const par = document.createElement('p');
 function game(userChoice, ComputerChoice) { 
     if (userChoice === ComputerChoice) {
-        console.log("empate, vuelve a empezar")
-        return;     
-    }
-    if (userChoice === "tijera" ) {
+        par.textContent = 'tie, start over';    
+    }else if (userChoice === "tijera" ) {
         if (ComputerChoice === "papel") {
-            console.log("ganaste!");
+            par.textContent = 'you win!'
             win = win + 1;
         } else {
-            console.log("perdiste, la piedra le gana al papel!")
+            par.textContent = 'you lose, rock beats scisors'
             lose = lose + 1;
         }   
-    }
-    if (userChoice === "piedra") {
+    }else if (userChoice === "piedra") {
         if (ComputerChoice === "tijera") {
-            console.log("ganaste!");
+            par.textContent ="you win!"
             win = win + 1;
         }  else {
-            console.log ("perdiste, el papel le gana a la piedra!")
+            par.textContent = "you lose, paper beats rock"
             lose = lose + 1;
         }
-    }
-    if (userChoice === "papel") {
+    }else if (userChoice === "papel") {
         if (ComputerChoice == "piedra") {
-            console.log("ganaste!");
+            par.textContent = "you win!"
             win = win + 1;
         } else {
-            console.log("perdiste, la tijera le gana al papel!")
+            par.textContent ="you lose, scisors beats paper"
             lose = lose + 1;
         }
 
     }
+    resultados.appendChild(par);
 }
-//usar eleccion de la maquina
-//hacer que el usuario elija
-//hacer que sean 5 rounds
 //setear valores win/lose/partida
 let win = 0;
 let lose = 0;
 let partida = 0;
-//game(userChoice, ComputerChoice);
+//decir quien gano la partida(en desuso)
 
-//decir quien gano
-if (win > lose) {
-    console.log("Ganaste la partida !");
-} else if (win < lose) {
-    console.log("perdiste la partida :(")
-}else (console.log("empate :0"))
-
-//for (let playRound = 0; playRound < 5; playRound++) {
 //asignar botones a las elecciones
+function clearGameOverMessage() {
+    par3.textContent = '';
+  }
+  
+const tablero = document.getElementById('counter');
+const par2 = document.createElement('p');
+const par3 = document.createElement('p');
+function contador (){
+    par2.textContent = `${win} - ${lose}`;
+    tablero.appendChild(par2);
+    if (partida === 5) {
+        if (win === lose) {
+            par3.textContent = "game tie :0"
+        } else if (win < lose) {
+            par3.textContent = "you lose the game :("
+        } else  {
+            par3.textContent = "you win the game!"
+        }
+        tablero.appendChild(par3)
+        partida = 0
+        win = 0
+        lose = 0 
+    } 
+}
 
 const tijera = document.getElementById('tijera');
 const papel = document.getElementById('papel');
 const piedra = document.getElementById('piedra');
 
 function elegir(choice) {
+    clearGameOverMessage()
     let userChoice = choice
     let ComputerChoice = getComputerChoice()
     game(userChoice, ComputerChoice);
-    console.log("you = " + win);
-    console.log("computer = " + lose)
-    partida++ 
+    partida++;
+    contador(); 
 }
+
+
 
 tijera.onclick = function() {
     elegir("tijera")
