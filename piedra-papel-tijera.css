@@ -2,10 +2,13 @@ body {
     background-color: rgb(177, 197, 197);
 }
 h3{
-    margin: 0;
+    border-radius: 33px;
+    margin: 0px 200px;
     font-size: 60px;
     text-align: center;
     background-color: aqua;
+    border: inset 5px;
+    border-color: rgb(83, 69, 207);
 }
 #botones {
     display: flex;
@@ -19,17 +22,25 @@ h3{
     height: 250px;
     border-radius: 50%;
     margin: 40px;
+    background-color: #8a53d8;
+    border: 7px double #cccccc;
+    border-radius: 80px;
+    font-size: 28px;
+    cursor: pointer;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
 }
 
-#results {
-    margin: 0px 0px;
-    font-size: 50px;
-    text-align: center;
-    background-color: black;
-    color: antiquewhite;
-}
+button:hover {
+    background-color: rgb(92, 0, 128);
+  }
+
 #counter {
-    margin: 0px auto 0px;
+    background-color: rgb(68, 68, 151);
+    margin:20px 600px 20px 600px ;
     text-align: center;
     font-size:  40px;
 }
+
